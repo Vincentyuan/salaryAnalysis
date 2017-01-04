@@ -1,20 +1,22 @@
-# Why is this repository for ?
-
-This repository will be used to supervize your work and provide you
-the help you might need more easily. 
-
-Make sure to use this project to share the current version of the
-project with your colleagues. I would like to have this repository up
-to date all the time. Do not hesistate to use a dedicated branch if
-you need to.
-
-If you need help about git, have a look at https://docs.gitlab.com/ce/gitlab-basics/README.html
-
-# Initial with maven
-Download maven to your preferred path and then export it to $Path
-and initial eclipse project:
 
 
->--export PATH=/opt/apache-maven-3.3.9/bin:$PATH
+prepare :
+1.install docker on your computer and run docker.
+2.install command line mvn
+3.make sure the port 9200 and 5601 is not in use.
 
->--mvn eclipse:eclipse
+
+how to run the project 
+1. Build the project : "mvn clean package assembly:single"
+
+2. Build the container : "docker build -t template:0.0.1 .""
+
+3. Run the container locally : "docker run -p 9200:9200 -p 5601:5601 template:0.0.1"
+
+4. Browse http://localhost:9200 and http://localhost:5601
+
+5. Browse http://localhost:5601
+   Uncheck "Index contains time-based events"
+   Replace "logstash-*" by "sf" and click on "Create"
+   Click on "Saved Objects"
+   Click on "Import" and select the file in kibana_export/export.json
